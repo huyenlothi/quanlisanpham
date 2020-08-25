@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bt</title>
+</head>
+<body>
+
+<h3>Add New Product</h3>
+<input type="text" id="newPro" placeholder="New Product">
+<button onclick="addNewProduct()">Add</button>
+
+
+<p>Display All Product</p>
+<div id="content"></div>
+<script>
+    let productList = ["Sony Xperia", "Samsung Galaxy", "Nokia 6", "Xiaomi Redmi Note 4", "Apple iPhone 6s"];
+    drawtable();
+
+    function drawtable() {
+
+        let tableList = `<table border="1px" ><tr><th>product name</th><th></th><th>${productList.length} products</th></tr>`
+        for (let i = 0; i < productList.length; i++) {
+            tableList += `<tr><td>${productList[i]}</td><td><button onclick="editProduct(${i})">edit</button></td>
+                <td><button onclick="deleteProduct(${i})">delete</button></td></tr>`
+        }
+        tableList += '</table>';
+        document.getElementById("content").innerHTML = tableList;
+    }
+
+    function addNewProduct() {
+        let newPro = document.getElementById("newPro").value;
+        productList.push(newPro);
+        drawtable();
+    }
+
+    function editProduct(e) {
+        let newName = prompt("nhap lai");
+        productList[e] = newName;
+        drawtable();
+    }
+
+    function deleteProduct(e) {
+        productList.splice(e, 1);
+        drawtable();
+    }
+</script>
+</body>
+</html>
